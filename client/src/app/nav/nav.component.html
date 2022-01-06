@@ -1,20 +1,33 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+    
     <div class="container">
         <a class="navbar-brand" routerLink='/' routerLinkActive="active">Dating App</a>
-      <ul class="navbar-nav mr-auto"  *ngIf="accountService.currentUser$ | async">
-        <ng-container *ngIf="accountService.currentUser$ | async">
-          <li class="nav-item ">
-            <a class="nav-link" routerLink='/members' routerLinkActive="active">Matches</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/lists" routerLinkActive="active">List</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink='/messages' routerLinkActive="active">Messages</a>
-          </li>
-        </ng-container>
-      </ul>
+      
+        <ul class="navbar-nav mr-auto"  *ngIf="accountService.currentUser$ | async">
+          <ng-container *ngIf="accountService.currentUser$ | async">
+            
+            <li class="nav-item ">
+              <a class="nav-link" routerLink='/members' routerLinkActive="active">Matches</a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/lists" routerLinkActive="active">List</a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" routerLink='/messages' routerLinkActive="active">Messages</a>
+            </li>
+         
+          </ng-container>
+        </ul>
 
+        <ul class="navbar-nav mr-auto">
+            <ng-container>
+            <li class="nav-item">
+              <a class="nav-link" routerLink='/errors'>Errors</a>
+            </li>
+          </ng-container>
+        </ul>
       <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as user" dropdown>
           <a class="dropdown-toogle text-light" dropdownToggle>Welcome {{user.userName | titlecase}}</a>
           <div class="dropdown-menu mt-3" *dropdownMenu>
