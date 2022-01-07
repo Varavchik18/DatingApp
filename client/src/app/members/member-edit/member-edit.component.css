@@ -5,11 +5,6 @@
 
 }
 
-.alert-info{
-    opacity: 0.5;
-    /*-- add here slow pulse animation --*/
-}
-
 .card-body{
     padding:0 25px;
 }
@@ -17,6 +12,6 @@
 .card-footer{
     padding: 10px 15px;
     background-color: rgb(236, 236, 236);
-    opacity: 0.7;
+    opacity: 1;
     border-top: none; 
-}
+} 
