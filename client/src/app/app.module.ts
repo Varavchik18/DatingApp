@@ -28,6 +28,8 @@ import { MemberEditComponent } from './members/member-edit/member-edit.component
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { LoadingInterceptor } from './_interceptors/loading.interceptor';
+import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
+import { FileSelectDirective } from 'ng2-file-upload';
 
 
 @NgModule({
@@ -44,7 +46,8 @@ import { LoadingInterceptor } from './_interceptors/loading.interceptor';
     NotFoundComponent,
     ServerErrorComponent,
     MemberCardComponent,
-    MemberEditComponent
+    MemberEditComponent,
+    PhotoEditorComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,6 +64,6 @@ import { LoadingInterceptor } from './_interceptors/loading.interceptor';
     {provide:HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi:true},
     {provide:HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi:true}
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

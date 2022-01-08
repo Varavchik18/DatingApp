@@ -9,7 +9,6 @@ namespace API.Entities
         public string Url { get; set; }
         public bool IsMain { get; set; }
         public string PublicID { get; set; }
-
         public AppUser AppUser{get;set;}
         public int AppUserID { get; set; }
     }
