@@ -20,17 +20,9 @@
          
           </ng-container>
         </ul>
-
-        <ul class="navbar-nav mr-auto">
-            <ng-container>
-            <li class="nav-item">
-              <a class="nav-link" routerLink='/errors'>Errors</a>
-            </li>
-          </ng-container>
-        </ul>
       <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as user" dropdown>
         <img src="{{user.photoUrl || './assets/user.png'}}" alt="{{user.userName}}">
-          <a class="dropdown-toogle text-light ml-2" dropdownToggle>Welcome {{user.userName | titlecase}}</a>
+          <a class="dropdown-toogle text-light ml-2" dropdownToggle>Welcome {{user.knownAs | titlecase}}</a>
           <div class="dropdown-menu mt-3" *dropdownMenu>
             <a class="dropdown-item" routerLink="/member/edit">Edit profile</a>
             <div class="dropdown-divider"></div>
