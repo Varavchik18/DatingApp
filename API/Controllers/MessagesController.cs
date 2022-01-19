@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using API.DTOs;
 using API.Entities;
 using API.Extensions;
+using API.Helpers;
 using API.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
@@ -18,7 +19,7 @@ namespace API.Controllers
         private readonly IUserRepository _userRepository;
         private readonly IMessageRepository _messageRepository;
         private readonly IMapper _mapper;
-        public MessagesController(IUserRepository userRepository, IMessageRepository messageRepository, 
+        public MessagesController(IUserRepository userRepository, IMessageRepository messageRepository,
             IMapper mapper)
         {
             _mapper = mapper;
@@ -54,6 +55,30 @@ namespace API.Controllers
 
             return BadRequest("Failed to send message");
 
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<MessageDTO>>> GetMessagesForUser(
+                                                            [FromQuery] MessageParams messageParams)
+        {
+            messageParams.UserName = User.GetUserName();
+
+            var messages = await _messageRepository.GetMessagesForUser(messageParams);
+
+            Response.AddPaginationHeader(
+                messages.CurrentPage,
+                messages.PageSize,
+                messages.TotalCount,
+                messages.TotalPages);
+
+            return messages;
+        }
+
+        [HttpGet("thread/{userName}")]
+        public async Task<ActionResult<IEnumerable<MessageDTO>>> GetMessageThread(string userName)
+        {
+            var currentUserName = User.GetUserName();
+            return Ok(await _messageRepository.GetMessageThread(currentUserName, userName));
         }
     }
 }
